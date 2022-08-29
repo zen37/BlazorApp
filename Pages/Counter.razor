@@ -11,6 +11,9 @@
 @code {
     private int currentCount = 0;
 
+    [Parameter]
+    public int Add{get; set;} = 10;
+
     private void IncrementCount()
     {
         currentCount++;
