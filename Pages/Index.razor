@@ -10,5 +10,17 @@ Welcome to your new app.
 
 <h6>here is the component NewPage</h6>
 <NewPage />
+ <input id="txtWord" name="txtWord" placeholder="Enter your text" 
+  value ="@value" @onchange="onChange" />
+
+@code
+{
+    public int value;
+
+    private void onChange(Microsoft.AspNetCore.Components.ChangeEventArgs args)
+{
+    value = (int)args.Value;
+}
+}
 <h6>here is the component Counter</h6>
-<Counter />
+<Counter Add = "@value" />
