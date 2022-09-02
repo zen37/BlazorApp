@@ -10,17 +10,21 @@ Welcome to your new app.
 
 <h6>here is the component NewPage</h6>
 <NewPage />
- <input id="txtWord" name="txtWord" placeholder="Enter your text" 
-  value ="@value" @onchange="onChange" />
 
-@code
-{
-    public int value;
+<input type="text" @oninput="UpdateText"/>
 
-    private void onChange(Microsoft.AspNetCore.Components.ChangeEventArgs args)
-{
-    value = (int)args.Value;
+The text is <label>@Text</label>
+
+@code {
+    public string Text { get; set; }
+    public int Value { get; set; }
+    
+    private void UpdateText(ChangeEventArgs e)
+    {
+        Text = e.Value.ToString();
+        Value = int.Parse(Text);
+    }
 }
-}
+
 <h6>here is the component Counter</h6>
-<Counter Add = "@value" />
+<Counter Add = "@Value" />
