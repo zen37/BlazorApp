@@ -1,26 +1,32 @@
 ﻿@page "/todo"
 
-<h3>Todo</h3>
+<h3>Todo @todos.Count(todo => !todo.IsDone)</h3>
 <ul>
     @foreach (var todo in todos)
     {
-        <li>@todo.Title</li>
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            @todo.Title @SEP @todo.Details
+        </li>
     }
 </ul>
-<input placeholder="Title" @bind="newTodo"/>
-<input placeholder="Additional info" />
+<input placeholder="Title" @bind="title"/>
+<input placeholder="Additional info" @bind="details"/>
 <button @onclick="add">Add todo</button>
 
 @code {
+    const string SEP = "-";
     private List<TodoItem> todos = new();
-    private string? newTodo;
+    private string? title;
+    private string? details;
 
     private void add()
     {
-        if (!string.IsNullOrWhiteSpace(newTodo))
+        if (!string.IsNullOrWhiteSpace(title))
         {
-            todos.Add(new TodoItem { Title = newTodo });
-            newTodo = string.Empty;
+            todos.Add(new TodoItem { Title = title, Details = details });
+            title = string.Empty;
+            details = string.Empty;
         }
     }
 }
